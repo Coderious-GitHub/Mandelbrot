@@ -1,4 +1,4 @@
-# GilJoWal
+# Mandelbrot
 Win32 Mandelbrot (DirectX 11)
 
 Mandelbrot Explorer with DirectX 11 support.
