@@ -23,8 +23,8 @@ private:
 		HINSTANCE hInst;
 		static constexpr LPCWSTR className = L"WindowClass";
 
-		//load icone
-		HICON wbIcon = static_cast<HICON>(LoadImage(GetInstance(),
+		//load icon
+		HICON mbIcon = static_cast<HICON>(LoadImage(GetInstance(),
 			MAKEINTRESOURCE(IDI_ICON1), IMAGE_ICON, 0, 0, 0));
 
 		WindowClass() noexcept;

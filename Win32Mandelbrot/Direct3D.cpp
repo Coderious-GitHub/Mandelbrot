@@ -376,72 +376,72 @@ void Direct3D::OnResize(int w, int h)
 	RenderFrame();
 }
 
-//overload without size, keep size unchanged
-void Direct3D::OnResize()
-{
-	HRESULT hr;
-
-	DXGI_MODE_DESC mDesc;
-	mDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	mDesc.Width = width;
-	mDesc.Height = height;
-	mDesc.RefreshRate.Denominator = 1;
-	mDesc.RefreshRate.Numerator = 0;
-	mDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;		// unspecified scan line ordering
-	mDesc.Scaling = DXGI_MODE_SCALING_STRETCHED;
-
-	hr = swapchain->ResizeTarget(&mDesc);
-
-	// Release all outstanding references to the swap chain's buffers.
-	backbuffer = nullptr;
-	zbuffer = nullptr;
-
-	devcon->Flush();
-	devcon->ClearState();
-
-	// Preserve the existing buffer count and format.
-	// Automatically choose the width and height to match the client rect for HWNDs.
-	hr = swapchain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
-
-	//create the depth buffer texture
-	D3D11_TEXTURE2D_DESC texd;
-	ZeroMemory(&texd, sizeof(texd));
-
-	texd.Width = width;
-	texd.Height = height;
-	texd.ArraySize = 1;
-	texd.MipLevels = 1;
-	texd.SampleDesc.Count = 4;
-	texd.Format = DXGI_FORMAT_D32_FLOAT;
-	texd.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-
-	// Get buffer and create a render-target-view.
-	ID3D11Texture2D* pBuffer;
-	hr = swapchain->GetBuffer(0, __uuidof(ID3D11Texture2D),
-		(void**)&pBuffer);
-	// Perform error handling here!
-
-	hr = dev->CreateRenderTargetView(pBuffer, NULL,
-		backbuffer.GetAddressOf());
-	// Perform error handling here!
-	pBuffer->Release();
-
-	devcon->OMSetRenderTargets(1, backbuffer.GetAddressOf(), zbuffer.Get());
-
-	// Set up the viewport.
-	D3D11_VIEWPORT vp;
-	vp.Width = width;
-	vp.Height = height;
-	vp.MinDepth = 0.0f;
-	vp.MaxDepth = 1.0f;
-	vp.TopLeftX = 0;
-	vp.TopLeftY = 0;
-	devcon->RSSetViewports(1, &vp);
-
-	InitGraphics();
-	InitPipeline();
-	RenderFrame();
-}
+////overload without size, keep size unchanged
+//void Direct3D::OnResize()
+//{
+//	HRESULT hr;
+//
+//	DXGI_MODE_DESC mDesc;
+//	mDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+//	mDesc.Width = width;
+//	mDesc.Height = height;
+//	mDesc.RefreshRate.Denominator = 1;
+//	mDesc.RefreshRate.Numerator = 0;
+//	mDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;		// unspecified scan line ordering
+//	mDesc.Scaling = DXGI_MODE_SCALING_STRETCHED;
+//
+//	hr = swapchain->ResizeTarget(&mDesc);
+//
+//	// Release all outstanding references to the swap chain's buffers.
+//	backbuffer = nullptr;
+//	zbuffer = nullptr;
+//
+//	devcon->Flush();
+//	devcon->ClearState();
+//
+//	// Preserve the existing buffer count and format.
+//	// Automatically choose the width and height to match the client rect for HWNDs.
+//	hr = swapchain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
+//
+//	//create the depth buffer texture
+//	D3D11_TEXTURE2D_DESC texd;
+//	ZeroMemory(&texd, sizeof(texd));
+//
+//	texd.Width = width;
+//	texd.Height = height;
+//	texd.ArraySize = 1;
+//	texd.MipLevels = 1;
+//	texd.SampleDesc.Count = 4;
+//	texd.Format = DXGI_FORMAT_D32_FLOAT;
+//	texd.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+//
+//	// Get buffer and create a render-target-view.
+//	ID3D11Texture2D* pBuffer;
+//	hr = swapchain->GetBuffer(0, __uuidof(ID3D11Texture2D),
+//		(void**)&pBuffer);
+//	// Perform error handling here!
+//
+//	hr = dev->CreateRenderTargetView(pBuffer, NULL,
+//		backbuffer.GetAddressOf());
+//	// Perform error handling here!
+//	pBuffer->Release();
+//
+//	devcon->OMSetRenderTargets(1, backbuffer.GetAddressOf(), zbuffer.Get());
+//
+//	// Set up the viewport.
+//	D3D11_VIEWPORT vp;
+//	vp.Width = width;
+//	vp.Height = height;
+//	vp.MinDepth = 0.0f;
+//	vp.MaxDepth = 1.0f;
+//	vp.TopLeftX = 0;
+//	vp.TopLeftY = 0;
+//	devcon->RSSetViewports(1, &vp);
+//
+//	InitGraphics();
+//	InitPipeline();
+//	RenderFrame();
+//}
 
 void Direct3D::Present()
 {

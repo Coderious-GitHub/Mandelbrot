@@ -50,11 +50,6 @@ private:
 		int maxIt;
 	};
 
-	//function prototypes
-	void InitD3D();
-	void InitGraphics();		//creates the shape to render
-	void InitPipeline();		//loads and prepare the shaders
-
 public:
 	Direct3D(HWND hWnd, int width, int height);
 	Direct3D();
@@ -67,6 +62,11 @@ public:
 	void OnResize();
 	void CenterScreen(int xDelta, int yDelta);
 	void Zoom(int xPos, int yPos, int wheelDelta);
+
+	//function prototypes
+	void InitD3D();
+	void InitGraphics();		//creates the shape to render
+	void InitPipeline();		//loads and prepare the shaders
 
 	float GetScreenRatio();
 

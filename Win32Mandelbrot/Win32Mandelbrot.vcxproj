@@ -157,13 +157,11 @@
     <ClCompile Include="Direct2D.cpp" />
     <ClCompile Include="Direct3D.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Mandelbrot.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Direct2D.h" />
     <ClInclude Include="Direct3D.h" />
-    <ClInclude Include="Mandelbrot.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -171,8 +169,7 @@
     <ResourceCompile Include="Win32Mandelbrot.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="wb_icon.ico" />
-    <Image Include="Wood.png" />
+    <Image Include="Mandelbrot.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

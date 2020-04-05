@@ -75,12 +75,8 @@ LRESULT CALLBACK Window::msgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPar
 			case 0x43:
 				bool temp = pThis->D3D->origColor;
 				pThis->D3D->origColor = !temp;
-
-				pThis->D2D->Clear();
-
-				pThis->D3D->OnResize();
-				pThis->D2D->OnResize();
-				pThis->D2D->OnPaint();
+				pThis->D3D->InitPipeline();
+				pThis->D3D->RenderFrame();
 				pThis->D3D->Present();
 			}
 			break;
@@ -102,12 +98,12 @@ Window::WindowClass::WindowClass() noexcept : hInst(GetModuleHandle(nullptr))
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
 	wc.hInstance = GetInstance();
-	wc.hIcon = wbIcon;
+	wc.hIcon = mbIcon;
 	wc.hCursor = nullptr;
 	wc.hbrBackground = nullptr;
 	wc.lpszMenuName = nullptr;
 	wc.lpszClassName = GetName();
-	wc.hIconSm = wbIcon;
+	wc.hIconSm = mbIcon;
 	RegisterClassEx(&wc);
 
 };

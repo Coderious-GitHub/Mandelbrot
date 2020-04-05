@@ -30,9 +30,6 @@
     <ClCompile Include="Direct2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mandelbrot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -47,9 +44,6 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Mandelbrot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Win32Mandelbrot.rc">
@@ -57,10 +51,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="wb_icon.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Wood.png">
+    <Image Include="Mandelbrot.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
